@@ -36,19 +36,17 @@
 check = 0
 history = {'Название': 'Сумма'}
 
-def To_deposit(check):
-    check += int(input('Для пополнения счета введите сумму - '))
-    return check
+def To_deposit():
+    return check + int(input('Для пополнения счета введите сумму - '))
 
-def Buy(check):
+def Buy():
     price = int(input('Введите сумму покупки: '))
     if price <= check:
         name = input('Введите название покупки: ')
         history[name] = price
-        check -= price
+        return check - price
     else:
         print('Не хватает денег')
-    return check
 
 def History_buy():
     for key, val in history.items():
@@ -62,9 +60,9 @@ while True:
 
     choice = input('Выберите пункт меню - ')
     if choice == '1':
-        check = To_deposit(check)
+        check = To_deposit()
     elif choice == '2':
-        check = Buy(check)
+        check = Buy()
     elif choice == '3':
         History_buy()
     elif choice == '4':
